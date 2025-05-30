@@ -28,7 +28,7 @@ class Skill(models.Model):
     # 'race' - uma chave estrangeira que aponta para o modelo Race.
     # A habilidade deve ser deletada quando a raça for deletada (CASCADE).
     race = models.ForeignKey(Race, on_delete=models.CASCADE,
-                             related_name="skills")  # Aspas duplas e quebra de linha
+                             related_name="skills")
 
     class Meta:
         verbose_name = "Habilidade"
@@ -45,7 +45,7 @@ class Guild(models.Model):
     name = models.CharField(max_length=255, unique=True)
     # 'description' - um campo de texto, pode ser nulo.
     description = models.TextField(blank=True, null=True)  # blank=True para formulários,
-                                                          # null=True para o banco de dados
+    # null=True para o banco de dados
 
     class Meta:
         verbose_name = "Guilda"
@@ -82,4 +82,3 @@ class Player(models.Model):
 
     def __str__(self) -> str:  # Adicionado tipo de retorno
         return self.nickname
-

@@ -84,14 +84,15 @@ def main() -> None:
             defaults={
                 "email": player_info["email"],
                 "bio": player_info["bio"],
-                "race": race,          # Associa a instância da raça
+                "race": race,  # Associa a instância da raça
                 "guild": guild_instance  # Associa a instância da guilda (pode ser None)
             }
         )
         if created:
             print(f"  Jogador '{player.nickname}' criado.")
         else:
-            print(f"  Jogador '{player.nickname}' já existe. Atualizando informações.")
+            print(f"  Jogador '{player.nickname}' já existe. "
+                  f"Atualizando informações.")
             # Se o jogador já existe, você pode querer atualizar seus dados
             player.email = player_info["email"]
             player.bio = player_info["bio"]
@@ -116,9 +117,11 @@ def main() -> None:
                 }
             )
             if created:
-                print(f"    Habilidade '{skill.name}' criada para a raça '{race.name}'.")
+                print(f"    Habilidade '{skill.name}' criada para a raça "
+                      f"'{race.name}'.")
             else:
-                print(f"    Habilidade '{skill.name}' já existe para a raça '{race.name}'.")
+                print(f"    Habilidade '{skill.name}' já existe para a raça "
+                      f"'{race.name}'.")
 
     print("\nImportação de dados concluída!")
 
