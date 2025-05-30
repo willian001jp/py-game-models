@@ -61,9 +61,11 @@ def main() -> None:
             defaults={"description": race_description}
         )
         if created:
-            print(f"  Raça \"{race.name}\" criada.")
+            # Corrigido: Aspas externas alteradas para simples
+            print(f'  Raça "{race.name}" criada.')
         else:
-            print(f"  Raça \"{race.name}\" já existe.")
+            # Corrigido: Aspas externas alteradas para simples
+            print(f'  Raça "{race.name}" já existe.')
 
         # 2. Processar Guild (Guilda)
         # A guilda pode ser nula, então verificamos
@@ -76,9 +78,11 @@ def main() -> None:
                 defaults={"description": guild_description}
             )
             if created:
-                print(f"  Guilda \"{guild.name}\" criada.")
+                # Corrigido: Aspas externas alteradas para simples
+                print(f'  Guilda "{guild.name}" criada.')
             else:
-                print(f"  Guilda \"{guild.name}\" já existe.")
+                # Corrigido: Aspas externas alteradas para simples
+                print(f'  Guilda "{guild.name}" já existe.')
             guild_instance = guild
         else:
             print("  Jogador não pertence a uma guilda.")
@@ -97,11 +101,13 @@ def main() -> None:
             }
         )
         if created:
-            print(f"  Jogador \"{player.nickname}\" criado.")
+            # Corrigido: Aspas externas alteradas para simples
+            print(f'  Jogador "{player.nickname}" criado.')
         else:
             # Quebra de linha para E501 e aspas duplas para Q000
-            print(f"  Jogador \"{player.nickname}\" já existe. "
-                  f"Atualizando informações.")
+            # Corrigido: Aspas externas alteradas para simples
+            print(f'  Jogador "{player.nickname}" já existe. '
+                  f'Atualizando informações.')
             # Se o jogador já existe, você pode querer atualizar seus dados
             player.email = player_info["email"]
             player.bio = player_info["bio"]
@@ -126,12 +132,14 @@ def main() -> None:
             )
             if created:
                 # Quebra de linha para E501 e aspas duplas para Q000
-                print(f"    Habilidade \"{skill.name}\" criada para a raça "
-                      f"\"{race.name}\".")
+                # Corrigido: Aspas externas alteradas para simples
+                print(f'    Habilidade "{skill.name}" criada para a raça '
+                      f'"{race.name}".')
             else:
                 # Quebra de linha para E501 e aspas duplas para Q000
-                print(f"    Habilidade \"{skill.name}\" já existe para a raça "
-                      f"\"{race.name}\".")
+                # Corrigido: Aspas externas alteradas para simples
+                print(f'    Habilidade "{skill.name}" já existe para a raça '
+                      f'"{race.name}".')
 
     print("\nImportação de dados concluída!")
 
