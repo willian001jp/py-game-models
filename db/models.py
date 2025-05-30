@@ -24,7 +24,7 @@ class Skill(models.Model):
     name = models.CharField(max_length=255, unique=True)
     # 'bonus' - um campo de caractere para descrições longas.
     # Descreve o tipo de bônus que os jogadores podem obter.
-    bonus = models.CharField(max_length=255)  # Alterado para CharField
+    bonus = models.CharField(max_length=255)
     # 'race' - uma chave estrangeira que aponta para o modelo Race.
     # A habilidade deve ser deletada quando a raça for deletada (CASCADE).
     race = models.ForeignKey(Race, on_delete=models.CASCADE,
@@ -59,7 +59,7 @@ class Guild(models.Model):
 class Player(models.Model):
     # 'nickname' - um campo de caractere único com comprimento máximo de 255.
     nickname = models.CharField(max_length=255, unique=True)
-    # 'email' - campo email com comprimento máximo de 255. Pode ser não único.
+    # 'email' - um campo de e-mail com comprimento máximo de 255. Pode ser não único.
     email = models.EmailField(max_length=255)
     # 'bio' - um CharField com comprimento máximo de 255 caracteres.
     # Armazena uma breve descrição fornecida pelo usuário sobre si mesmo.
@@ -79,13 +79,14 @@ class Player(models.Model):
         blank=True,
         related_name="members"
     )
-    # 'created_at' - campo DateTime, definido com a hora atual por padrão.
+    # 'created_at' - um campo DateTime, que é definido com a hora atual por padrão.
     created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
         verbose_name = "Jogador"
         verbose_name_plural = "Jogadores"
-        ordering = ["-created_at"]  # Ordena os jogadores pelo mais recente
+        # Alterado para ordenar por 'created_at' em ordem crescente
+        ordering = ["created_at"]
 
     def __str__(self) -> str:
         return self.nickname
