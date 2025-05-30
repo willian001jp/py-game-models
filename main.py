@@ -49,7 +49,7 @@ def main() -> None:
     # O players_data agora é um objeto JSON (dicionário)
     # Precisamos iterar sobre os valores (os objetos de jogador)
     for nickname, player_info in players_data.items():
-        print(f'\nProcessando jogador: {nickname}')
+        print(f"\nProcessando jogador: {nickname}")
 
         # 1. Processar Race (Raça)
         # Usa get_or_create para garantir que a raça seja criada apenas uma vez
@@ -99,7 +99,7 @@ def main() -> None:
             print(f'  Jogador "{player.nickname}" criado.')
         else:
             print(f'  Jogador "{player.nickname}" já existe. '
-                  f'Atualizando informações.')
+                  f"Atualizando informações.")
             # Se o jogador já existe, você pode querer atualizar seus dados
             player.email = player_info["email"]
             player.bio = player_info["bio"]
