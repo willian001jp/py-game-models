@@ -48,8 +48,9 @@ def main() -> None:
     print("Iniciando a importação de dados...")
 
     for player_info in players_data:
-        # Corrigido: Usando aspas simples para 'nickname' dentro da f-string
-        print(f"\nProcessando jogador: {player_info['nickname']}")
+        # Corrigido: Usando aspas simples para a f-string externa
+        # e aspas duplas para a chave do dicionário.
+        print(f'\nProcessando jogador: {player_info["nickname"]}')
 
         # 1. Processar Race (Raça)
         # Usa get_or_create para garantir que a raça seja criada apenas uma vez
