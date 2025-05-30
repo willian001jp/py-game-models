@@ -92,7 +92,7 @@ def main() -> None:
             print(f"  Jogador '{player.nickname}' criado.")
         else:
             print(f"  Jogador '{player.nickname}' já existe. "
-                  f"Atualizando informações.")
+                  "Atualizando informações.")  # Quebra de linha
             # Se o jogador já existe, você pode querer atualizar seus dados
             player.email = player_info["email"]
             player.bio = player_info["bio"]
