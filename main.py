@@ -83,7 +83,7 @@ def main() -> None:
                 'email': player_info['email'],
                 'bio': player_info['bio'],
                 'race': race,          # Associa a instância da raça
-                'guild': guild_instance # Associa a instância da guilda (pode ser None)
+                'guild': guild_instance  # Associa a instância da guilda (pode ser None)
             }
         )
         if created:
@@ -97,7 +97,6 @@ def main() -> None:
             player.guild = guild_instance
             player.save()
 
-
         # 4. Processar Skills (Habilidades) para a Raça
         # Itera sobre as habilidades fornecidas para a raça do jogador atual
         for skill_info in player_info['skills']:
@@ -109,7 +108,7 @@ def main() -> None:
                 name=skill_name,
                 defaults={
                     'bonus': skill_bonus,
-                    'race': race # Associa a habilidade à instância da raça que acabamos de criar/obter
+                    'race': race  # Associa a habilidade à instância da raça que acabamos de criar/obter
                 }
             )
             if created:
@@ -118,6 +117,7 @@ def main() -> None:
                 print(f"    Habilidade '{skill.name}' já existe para a raça '{race.name}'.")
 
     print("\nImportação de dados concluída!")
+
 
 if __name__ == "__main__":
     main()
