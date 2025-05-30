@@ -28,7 +28,8 @@ def main() -> None:
     """
     Lê dados de players.json e adiciona as
     entradas correspondentes ao banco de dados.
-    Cria apenas uma instância para cada guilda, raça e habilidade, não as copia.
+    Cria apenas uma instância para cada
+    guilda, raça e habilidade, não as copia.
     """
     # Caminho para o arquivo JSON
     # Assumimos que players.json está no mesmo diretório que main.py
@@ -47,7 +48,7 @@ def main() -> None:
     print("Iniciando a importação de dados...")
 
     for player_info in players_data:
-        print(f"\nProcessando jogador: {player_info['nickname']}")
+        print(f"\nProcessando jogador: {player_info["nickname"]}")
 
         # 1. Processar Race (Raça)
         # Usa get_or_create para garantir que a raça seja criada apenas uma vez
