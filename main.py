@@ -17,7 +17,7 @@ from db.models import Race, Skill, Player, Guild
 
 # Configura o ambiente Django (necessário para rodar o script fora do manage.py)
 # Substitua 'your_project_name' pelo nome real do seu projeto Django
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "your_project_name.settings")
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "py-game-models.settings")
 django.setup()
 
 
