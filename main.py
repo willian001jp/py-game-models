@@ -106,8 +106,7 @@ def main() -> None:
         else:
             # Quebra de linha para E501 e aspas duplas para Q000
             # Corrigido: Aspas externas alteradas para simples
-            print(f'  Jogador "{player.nickname}" já existe. '
-                  f'Atualizando informações.')
+            print(f'Player "{player.nickname}" já existe. Atualizando info.')
             # Se o jogador já existe, você pode querer atualizar seus dados
             player.email = player_info["email"]
             player.bio = player_info["bio"]
