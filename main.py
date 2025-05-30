@@ -92,7 +92,7 @@ def main() -> None:
             print(f"  Jogador '{player.nickname}' criado.")
         else:
             print(f"  Jogador '{player.nickname}' já existe. "
-                  "Atualizando informações.")  # Quebra de linha
+                  "Atualizando informações.")
             # Se o jogador já existe, você pode querer atualizar seus dados
             player.email = player_info["email"]
             player.bio = player_info["bio"]
@@ -113,7 +113,6 @@ def main() -> None:
                 defaults={
                     "bonus": skill_bonus,
                     "race": race  # Associa a habilidade à instância da raça
-                                 # que acabamos de criar/obter
                 }
             )
             if created:

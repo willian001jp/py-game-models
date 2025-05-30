@@ -13,7 +13,7 @@ class Race(models.Model):
         verbose_name = "Raça"
         verbose_name_plural = "Raças"
 
-    def __str__(self) -> str:  # Adicionado tipo de retorno
+    def __str__(self) -> str:
         return self.name
 
 
@@ -34,7 +34,7 @@ class Skill(models.Model):
         verbose_name = "Habilidade"
         verbose_name_plural = "Habilidades"
 
-    def __str__(self) -> str:  # Adicionado tipo de retorno
+    def __str__(self) -> str:
         return f"{self.name} ({self.race.name})"
 
 
@@ -51,7 +51,7 @@ class Guild(models.Model):
         verbose_name = "Guilda"
         verbose_name_plural = "Guildas"
 
-    def __str__(self) -> str:  # Adicionado tipo de retorno
+    def __str__(self) -> str:
         return self.name
 
 
@@ -87,5 +87,5 @@ class Player(models.Model):
         verbose_name_plural = "Jogadores"
         ordering = ["-created_at"]  # Ordena os jogadores pelo mais recente
 
-    def __str__(self) -> str:  # Adicionado tipo de retorno
+    def __str__(self) -> str:
         return self.nickname
