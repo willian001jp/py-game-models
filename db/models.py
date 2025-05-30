@@ -59,7 +59,8 @@ class Guild(models.Model):
 class Player(models.Model):
     # 'nickname' - um campo de caractere único com comprimento máximo de 255.
     nickname = models.CharField(max_length=255, unique=True)
-    # 'email' - um campo de e-mail com comprimento máximo de 255. Pode ser não único.
+    # 'email' - um campo de e-mail com comprimento máximo de 255.
+    # Pode ser não único.
     email = models.EmailField(max_length=255)
     # 'bio' - um CharField com comprimento máximo de 255 caracteres.
     # Armazena uma breve descrição fornecida pelo usuário sobre si mesmo.
@@ -79,7 +80,8 @@ class Player(models.Model):
         blank=True,
         related_name="members"
     )
-    # 'created_at' - um campo DateTime, que é definido com a hora atual por padrão.
+    # 'created_at' - um campo DateTime,
+    # que é definido com a hora atual por padrão.
     created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:

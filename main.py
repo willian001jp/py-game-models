@@ -6,7 +6,8 @@ import django
 from db.models import Race, Skill, Player, Guild
 
 # Importa o arquivo que inicializa o ORM Django
-# Certifique-se de que 'init_django_orm' está no PYTHONPATH ou no mesmo diretório
+# Certifique-se de que 'init_django_orm' está no PYTHONPATH ou
+# no mesmo diretório
 # Se você seguiu a estrutura recomendada, ele deve estar na raiz do projeto.
 # Se init_django_orm.py estiver na mesma pasta que main.py, você pode usar:
 # import init_django_orm # noqa: F401
@@ -16,7 +17,8 @@ from db.models import Race, Skill, Player, Guild
 # ou que init_django_orm.py será executado antes ou está configurado
 # para ser importado.
 
-# Configura o ambiente Django (necessário para rodar o script fora do manage.py)
+# Configura o ambiente Django
+# (necessário para rodar o script fora do manage.py)
 # Substitua 'your_project_name' pelo nome real do seu projeto Django
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "py-game-models.settings")
 django.setup()
@@ -24,7 +26,8 @@ django.setup()
 
 def main() -> None:
     """
-    Lê dados de players.json e adiciona as entradas correspondentes ao banco de dados.
+    Lê dados de players.json e adiciona as
+    entradas correspondentes ao banco de dados.
     Cria apenas uma instância para cada guilda, raça e habilidade, não as copia.
     """
     # Caminho para o arquivo JSON
@@ -78,14 +81,16 @@ def main() -> None:
             print("  Jogador não pertence a uma guilda.")
 
         # 3. Processar Player (Jogador)
-        # Cria ou obtém o jogador. Se o nickname já existe, ele não será criado novamente.
+        # Cria ou obtém o jogador. Se o nickname já existe,
+        # ele não será criado novamente.
         player, created = Player.objects.get_or_create(
             nickname=player_info["nickname"],
             defaults={
                 "email": player_info["email"],
                 "bio": player_info["bio"],
                 "race": race,  # Associa a instância da raça
-                "guild": guild_instance  # Associa a instância da guilda (pode ser None)
+                "guild": guild_instance  # Associa a instância
+                # da guilda (pode ser None)
             }
         )
         if created:
@@ -106,7 +111,8 @@ def main() -> None:
             skill_name = skill_info["name"]
             # Converte o bônus para inteiro antes de usar
             skill_bonus = int(skill_info["bonus"])
-            # Usa get_or_create para garantir que a habilidade seja criada apenas uma vez
+            # Usa get_or_create para garantir que a
+            # habilidade seja criada apenas uma vez
             # e associada à raça correta.
             skill, created = Skill.objects.get_or_create(
                 name=skill_name,
