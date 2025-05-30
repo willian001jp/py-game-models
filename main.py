@@ -46,8 +46,10 @@ def main() -> None:
 
     print("Iniciando a importação de dados...")
 
-    for player_info in players_data:
-        print(f'\nProcessando jogador: {player_info["nickname"]}')
+    # O players_data agora é um objeto JSON (dicionário)
+    # Precisamos iterar sobre os valores (os objetos de jogador)
+    for nickname, player_info in players_data.items():
+        print(f'\nProcessando jogador: {nickname}')
 
         # 1. Processar Race (Raça)
         # Usa get_or_create para garantir que a raça seja criada apenas uma vez
@@ -84,7 +86,7 @@ def main() -> None:
         # Cria ou obtém o jogador. Se o nickname já existe,
         # ele não será criado novamente.
         player, created = Player.objects.get_or_create(
-            nickname=player_info["nickname"],
+            nickname=nickname,  # Usando o nickname da chave do JSON
             defaults={
                 "email": player_info["email"],
                 "bio": player_info["bio"],
@@ -96,7 +98,8 @@ def main() -> None:
         if created:
             print(f'  Jogador "{player.nickname}" criado.')
         else:
-            print(f'  Player "{player.nickname}" já existe. Atualizando info.')
+            print(f'  Jogador "{player.nickname}" já existe. '
+                  f'Atualizando informações.')
             # Se o jogador já existe, você pode querer atualizar seus dados
             player.email = player_info["email"]
             player.bio = player_info["bio"]
@@ -106,10 +109,12 @@ def main() -> None:
 
         # 4. Processar Skills (Habilidades) para a Raça
         # Itera sobre as habilidades fornecidas para a raça do jogador atual
-        for skill_info in player_info["skills"]:
+        # Corrigido: Acessando 'skills' através de 'race' de forma segura
+        skills_data = player_info["race"].get("skills", [])
+        for skill_info in skills_data:
             skill_name = skill_info["name"]
-            # Converte o bônus para inteiro antes de usar
-            skill_bonus = int(skill_info["bonus"])
+            # Removida a conversão para int(), pois 'bonus' agora é CharField
+            skill_bonus = skill_info["bonus"]
             # Usa get_or_create para garantir que a habilidade
             # seja criada apenas uma vez e associada à raça correta.
             skill, created = Skill.objects.get_or_create(
