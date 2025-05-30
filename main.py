@@ -101,7 +101,8 @@ def main() -> None:
         # Itera sobre as habilidades fornecidas para a raça do jogador atual
         for skill_info in player_info['skills']:
             skill_name = skill_info['name']
-            skill_bonus = skill_info['bonus']
+            # Converte o bônus para inteiro antes de usar
+            skill_bonus = int(skill_info['bonus'])
             # Usa get_or_create para garantir que a habilidade seja criada apenas uma vez
             # e associada à raça correta.
             skill, created = Skill.objects.get_or_create(

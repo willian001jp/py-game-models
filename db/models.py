@@ -22,9 +22,9 @@ class Race(models.Model):
 class Skill(models.Model):
     # 'name' - um campo de caractere único com comprimento máximo de 255.
     name = models.CharField(max_length=255, unique=True)
-    # 'bonus' - um campo de caractere com comprimento máximo de 255.
+    # 'bonus' - um campo de inteiro.
     # Descreve o tipo de bônus que os jogadores podem obter.
-    bonus = models.CharField(max_length=255)
+    bonus = models.IntegerField()  # Alterado de CharField para IntegerField
     # 'race' - uma chave estrangeira que aponta para o modelo Race.
     # A habilidade deve ser deletada quando a raça for deletada (CASCADE).
     race = models.ForeignKey(Race, on_delete=models.CASCADE, related_name='skills')
