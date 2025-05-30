@@ -19,7 +19,6 @@ from db.models import Race, Skill, Player, Guild
 
 # Configura o ambiente Django
 # (Necessário para rodar o script fora do manage.py)
-# Substitua 'your_project_name' pelo nome real do seu projeto Django
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "py-game-models.settings")
 django.setup()
 
@@ -48,8 +47,6 @@ def main() -> None:
     print("Iniciando a importação de dados...")
 
     for player_info in players_data:
-        # Corrigido: Usando aspas simples para a f-string externa
-        # e aspas duplas para a chave do dicionário.
         print(f'\nProcessando jogador: {player_info["nickname"]}')
 
         # 1. Processar Race (Raça)
@@ -61,10 +58,8 @@ def main() -> None:
             defaults={"description": race_description}
         )
         if created:
-            # Corrigido: Aspas externas alteradas para simples
             print(f'  Raça "{race.name}" criada.')
         else:
-            # Corrigido: Aspas externas alteradas para simples
             print(f'  Raça "{race.name}" já existe.')
 
         # 2. Processar Guild (Guilda)
@@ -78,10 +73,8 @@ def main() -> None:
                 defaults={"description": guild_description}
             )
             if created:
-                # Corrigido: Aspas externas alteradas para simples
                 print(f'  Guilda "{guild.name}" criada.')
             else:
-                # Corrigido: Aspas externas alteradas para simples
                 print(f'  Guilda "{guild.name}" já existe.')
             guild_instance = guild
         else:
@@ -101,12 +94,10 @@ def main() -> None:
             }
         )
         if created:
-            # Corrigido: Aspas externas alteradas para simples
             print(f'  Jogador "{player.nickname}" criado.')
         else:
-            # Quebra de linha para E501 e aspas duplas para Q000
-            # Corrigido: Aspas externas alteradas para simples
-            print(f'Player "{player.nickname}" já existe. Atualizando info.')
+            print(f'  Jogador "{player.nickname}" já existe. '
+                  f'Atualizando informações.')
             # Se o jogador já existe, você pode querer atualizar seus dados
             player.email = player_info["email"]
             player.bio = player_info["bio"]
@@ -130,13 +121,9 @@ def main() -> None:
                 }
             )
             if created:
-                # Quebra de linha para E501 e aspas duplas para Q000
-                # Corrigido: Aspas externas alteradas para simples
                 print(f'    Habilidade "{skill.name}" criada para a raça '
                       f'"{race.name}".')
             else:
-                # Quebra de linha para E501 e aspas duplas para Q000
-                # Corrigido: Aspas externas alteradas para simples
                 print(f'    Habilidade "{skill.name}" já existe para a raça '
                       f'"{race.name}".')
 
