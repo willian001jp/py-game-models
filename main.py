@@ -13,7 +13,8 @@ from db.models import Race, Skill, Player, Guild
 # Se estiver na raiz do projeto e main.py estiver em uma subpasta,
 # você pode precisar ajustar o path
 # Para simplificar, vamos assumir que o ambiente Django já está configurado
-# ou que init_django_orm.py será executado antes ou está configurado para ser importado.
+# ou que init_django_orm.py será executado antes ou está configurado
+# para ser importado.
 
 # Configura o ambiente Django (necessário para rodar o script fora do manage.py)
 # Substitua 'your_project_name' pelo nome real do seu projeto Django
