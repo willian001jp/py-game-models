@@ -1,5 +1,6 @@
 from django.db import models
 
+
 # 1. Modelo Race (Raça)
 # Cada jogador deve escolher uma raça para jogar.
 class Race(models.Model):
@@ -14,6 +15,7 @@ class Race(models.Model):
 
     def __str__(self):
         return self.name
+
 
 # 2. Modelo Skill (Habilidade)
 # Cada raça tem habilidades únicas.
@@ -34,13 +36,14 @@ class Skill(models.Model):
     def __str__(self):
         return f"{self.name} ({self.race.name})"
 
+
 # 3. Modelo Guild (Guilda)
 # O jogador tem a oportunidade de se tornar um membro de uma guilda.
 class Guild(models.Model):
     # 'name' - um campo de caractere único com comprimento máximo de 255.
     name = models.CharField(max_length=255, unique=True)
     # 'description' - um campo de texto, pode ser nulo.
-    description = models.TextField(blank=True, null=True) # blank=True para formulários, null=True para o banco de dados
+    description = models.TextField(blank=True, null=True)  # blank=True para formulários, null=True para o banco de dados
 
     class Meta:
         verbose_name = "Guilda"
@@ -48,6 +51,7 @@ class Guild(models.Model):
 
     def __str__(self):
         return self.name
+
 
 # 4. Modelo Player (Jogador)
 class Player(models.Model):
@@ -71,7 +75,7 @@ class Player(models.Model):
     class Meta:
         verbose_name = "Jogador"
         verbose_name_plural = "Jogadores"
-        ordering = ['-created_at'] # Ordena os jogadores pelo mais recente
+        ordering = ['-created_at']  # Ordena os jogadores pelo mais recente
 
     def __str__(self):
         return self.nickname
