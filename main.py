@@ -6,8 +6,8 @@ import django
 from db.models import Race, Skill, Player, Guild
 
 # Importa o arquivo que inicializa o ORM Django
-# Certifique-se de que 'init_django_orm' está no PYTHONPATH ou
-# no mesmo diretório
+# Certifique-se de que 'init_django_orm' está no PYTHONPATH
+# ou no mesmo diretório
 # Se você seguiu a estrutura recomendada, ele deve estar na raiz do projeto.
 # Se init_django_orm.py estiver na mesma pasta que main.py, você pode usar:
 # import init_django_orm # noqa: F401
@@ -18,7 +18,7 @@ from db.models import Race, Skill, Player, Guild
 # para ser importado.
 
 # Configura o ambiente Django
-# (necessário para rodar o script fora do manage.py)
+# (Necessário para rodar o script fora do manage.py)
 # Substitua 'your_project_name' pelo nome real do seu projeto Django
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "py-game-models.settings")
 django.setup()
@@ -26,10 +26,10 @@ django.setup()
 
 def main() -> None:
     """
-    Lê dados de players.json e adiciona as
-    entradas correspondentes ao banco de dados.
-    Cria apenas uma instância para cada
-    guilda, raça e habilidade, não as copia.
+    Lê dados de players.json e adiciona as entradas
+    correspondentes ao banco de dados.
+    Cria apenas uma instância para cada guilda,
+    raça e habilidade, não as copia.
     """
     # Caminho para o arquivo JSON
     # Assumimos que players.json está no mesmo diretório que main.py
@@ -48,7 +48,8 @@ def main() -> None:
     print("Iniciando a importação de dados...")
 
     for player_info in players_data:
-        print(f"\nProcessando jogador: {player_info["nickname"]}")
+        # Corrigido: Aspas duplas escapadas para 'nickname' dentro da f-string
+        print(f"\nProcessando jogador: {player_info[\"nickname\"]}")
 
         # 1. Processar Race (Raça)
         # Usa get_or_create para garantir que a raça seja criada apenas uma vez
@@ -59,9 +60,9 @@ def main() -> None:
             defaults={"description": race_description}
         )
         if created:
-            print(f"  Raça '{race.name}' criada.")
+            print(f"  Raça \"{race.name}\" criada.")
         else:
-            print(f"  Raça '{race.name}' já existe.")
+            print(f"  Raça \"{race.name}\" já existe.")
 
         # 2. Processar Guild (Guilda)
         # A guilda pode ser nula, então verificamos
@@ -74,9 +75,9 @@ def main() -> None:
                 defaults={"description": guild_description}
             )
             if created:
-                print(f"  Guilda '{guild.name}' criada.")
+                print(f"  Guilda \"{guild.name}\" criada.")
             else:
-                print(f"  Guilda '{guild.name}' já existe.")
+                print(f"  Guilda \"{guild.name}\" já existe.")
             guild_instance = guild
         else:
             print("  Jogador não pertence a uma guilda.")
@@ -90,15 +91,16 @@ def main() -> None:
                 "email": player_info["email"],
                 "bio": player_info["bio"],
                 "race": race,  # Associa a instância da raça
-                "guild": guild_instance  # Associa a instância
-                # da guilda (pode ser None)
+                # Associa a instância da guilda (pode ser None)
+                "guild": guild_instance
             }
         )
         if created:
-            print(f"  Jogador '{player.nickname}' criado.")
+            print(f"  Jogador \"{player.nickname}\" criado.")
         else:
-            print(f"  Jogador '{player.nickname}' já existe. "
-                  "Atualizando informações.")
+            # Quebra de linha para E501 e aspas duplas para Q000
+            print(f"  Jogador \"{player.nickname}\" já existe. "
+                  f"Atualizando informações.")
             # Se o jogador já existe, você pode querer atualizar seus dados
             player.email = player_info["email"]
             player.bio = player_info["bio"]
@@ -112,9 +114,8 @@ def main() -> None:
             skill_name = skill_info["name"]
             # Converte o bônus para inteiro antes de usar
             skill_bonus = int(skill_info["bonus"])
-            # Usa get_or_create para garantir que a
-            # habilidade seja criada apenas uma vez
-            # e associada à raça correta.
+            # Usa get_or_create para garantir que a habilidade
+            # seja criada apenas uma vez e associada à raça correta.
             skill, created = Skill.objects.get_or_create(
                 name=skill_name,
                 defaults={
@@ -123,11 +124,13 @@ def main() -> None:
                 }
             )
             if created:
-                print(f"    Habilidade '{skill.name}' criada para a raça "
-                      f"'{race.name}'.")
+                # Quebra de linha para E501 e aspas duplas para Q000
+                print(f"    Habilidade \"{skill.name}\" criada para a raça "
+                      f"\"{race.name}\".")
             else:
-                print(f"    Habilidade '{skill.name}' já existe para a raça "
-                      f"'{race.name}'.")
+                # Quebra de linha para E501 e aspas duplas para Q000
+                print(f"    Habilidade \"{skill.name}\" já existe para a raça "
+                      f"\"{race.name}\".")
 
     print("\nImportação de dados concluída!")
 
